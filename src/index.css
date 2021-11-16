@@ -1,0 +1,15 @@
+.quote_block {
+    padding: 5%;
+    font-style: italic;
+    padding-left: 1em;
+    background-color: #e5f2f8;
+  }
+
+.quote_block input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e4e4e4;
+    border-radius: 3px;
+    outline: none;
+    font-size: 14px;
+}
