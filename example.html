@@ -1,3 +1,4 @@
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
 <script src="src/index.js"></script>
 <link href="src/index.css" rel="stylesheet"/>
@@ -11,7 +12,11 @@
     const editor = new EditorJS({
       autofocus: true,
       tools: {
-        quoteblock: LvnsQuoteBlock
+        quoteblock: LvnsQuoteBlock,
+        button: {
+            class: LvnsButton,
+            inlineToolbar: ['link']
+        }
       }
     });
 
