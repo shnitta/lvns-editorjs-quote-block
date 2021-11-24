@@ -56,91 +56,116 @@ class LvnsButton {
         this.data = {
             label: data.label || '',
             link: data.link || '',
-            linkbtn: data.linkbtn !== undefined ? data.linkbtn : false,
         };
+        this.settings = [
+            {
+                name: 'edit',
+                icon: '<img src="assets/edit.svg" width="17" height="15">'
+            },
+        ];
     }
 
     render(){
         this.wrapper = document.createElement('div');
         this.wrapper.innerHTML = '';
 
+        if (this.data && this.data.label && this.data.link){
+            this._renderButton(this.data.label, this.data.link);
+            return this.wrapper;
+        }
+        this._renderForm();
+        return this.wrapper;
+
+	}
+
+    _renderForm(){
+        const label = document.createElement('input');
+        label.placeholder = 'ラベル';
+        label.contentEditable = true;
+        label.value = this.data.label || '';
+        label.addEventListener('change', (event) => {
+            this.data.label  = event.target.value;
+            if (this.data && this.data.label && this.data.link){
+                this._renderButton(this.data.label, this.data.link);
+            }
+        });
+      
+        this.wrapper.appendChild(label);
+
+        const link = document.createElement('input');
+        link.placeholder = 'リンク先URL...';
+        link.contentEditable = true;
+        link.value = this.data.link || '';
+        link.addEventListener('change', (event) => {
+            this.data.link  = event.target.value;
+            if (this.data && this.data.label && this.data.link){
+                this._renderButton(this.data.label, this.data.link);
+            }
+        });
+        this.wrapper.appendChild(link);
+
+    }
+
+    _renderButton(label, target){
+       
+        this.wrapper.innerHTML = '';
         const block = document.createElement('button');
+
         block.classList.add('btn');
         block.classList.add('-green');
         block.classList.add('-round');
         block.classList.add('-article');
         block.classList.add('-center');
-        block.placeholder = 'Quoted Text...';
-        block.contentEditable = true;
-        block.innerHTML = this.data.label || '';
+
+        block.innerHTML = label || '';
+        block.onclick = function() {
+            window.open(target);
+          };
 
         this.wrapper.appendChild(block);
-
-        return this.wrapper;
-	}
-
-
-  renderSettings(){
-    const settings = [
-      {
-        name: 'linkbtn',
-        icon: '<img src="assets/link.svg" width="17" height="15">'
-      },
-    ];
-    const wrapper = document.createElement('div');
-
-    settings.forEach( tune => {
-      let button = document.createElement('div');
-
-      button.classList.add('cdx-settings-button');
-      button.innerHTML = tune.icon;
-      wrapper.appendChild(button);
-
-      button.addEventListener('click', () => {
-        this._toggleTune(tune.name);
-        button.classList.toggle('cdx-settings-button--active');
-      });
-
-    });
-
-    return wrapper;
-  }
-
-    /**
-   * @private
-   * Click on the Settings Button
-   * @param {string} tune — tune name from this.settings
-   */
-     _toggleTune(tune) {
-        console.log('Image tune clicked', tune);
-        this.data[tune] = !this.data[tune];
-        this._acceptTuneView();
-
-      }
-
-    /**
-   * Add specified class corresponds with activated tunes
-   * @private
-   */
-    _acceptTuneView() {
-        this.settings.forEach( tune => {
-            this.wrapper.classList.toggle(tune.name, !!this.data[tune.name]);
-        });
     }
       
 	save(blockContent){
-        const input = blockContent.querySelector('[contenteditable]');
-
         return Object.assign(this.data, {
-            value: input.innerHTML || ''
+            label: this.data.label || '',
+            link: this.data.link || ''
         });
 	}
 
     validate(savedData){
-        if (!savedData.value.trim()){
+        if (!savedData.label.trim()){
           return false;
         }
+        if (!savedData.link.trim()){
+            return false;
+          }
     
         return true;
+    }
+
+    renderSettings(){
+        const wrapper = document.createElement('div');
+
+        this.settings.forEach( tune => {
+            let button = document.createElement('div');
+
+            button.classList.add('cdx-settings-button');
+            button.innerHTML = tune.icon;
+            wrapper.appendChild(button);
+
+            button.addEventListener('click', () => {
+                this._clickSettingButton(tune.name);
+                button.classList.toggle('cdx-settings-button--active');
+            });
+        });
+
+        return wrapper;
+    }
+
+    _clickSettingButton(tune) {
+        if(tune === 'edit'){
+            this.wrapper.innerHTML = '';
+            this._renderForm();
+        }
       }
 }
