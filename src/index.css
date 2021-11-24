@@ -2051,7 +2051,7 @@ font-size: 2rem;
 	flex: 1;
 }
 
-.checokbox + .form_input_view::before {
+.checkbox + .form_input_view::before {
 	content: '';
 	display: inline-block;
 	width: 24px;
@@ -2064,8 +2064,8 @@ font-size: 2rem;
 	flex: 1 0 auto;
 }
 
-.checokbox:checked + .form_input_view::before {
-	background: url('~@/assets/images/form_checked.svg') center center / contain no-repeat;
+.checkbox:checked + .form_input_view::before {
+	background: url('../assets/form_checked.svg') center center / contain no-repeat;
 }
 
 .radio + .form_input_view::before {
@@ -2087,18 +2087,18 @@ font-size: 2rem;
 	box-shadow: 0px 0px 0px 5px #fff inset;
 }
 
-.form_ckecks {
+.form_checks {
 	margin-right: -10px;
 	margin-left: -10px;
 	margin-bottom: -10px;
 	letter-spacing: -.4em;
 }
 
-* + .form_ckecks {
+* + .form_checks {
 	margin-top: 10px;
 }
 
-.form_ckecks>* {
+.form_checks>* {
 	display: inline-block;
 	padding: 0 10px;
 	margin-bottom: 10px;
@@ -2154,12 +2154,12 @@ font-size: 2rem;
   white-space: pre-wrap;
 }
 
-.form_vals.form_vals_confirm .form_ckecks {
+.form_vals.form_vals_confirm .form_checks {
 	margin-right: 0;
 	margin-left: 0;
 }
 
-.form_vals.form_vals_confirm .form_ckecks>* {
+.form_vals.form_vals_confirm .form_checks>* {
 	padding: 0;
 }
 

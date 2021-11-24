@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .ef90d801-906b-4cc6-8c18-af5f364a6f98 {
+        fill: none;
+      }
+
+      .a0b5980d-1f00-4427-92a6-760a0d4e1142 {
+        fill: #649aff;
+      }
+    </style>
+  </defs>
+  <g id="e9adb959-bfb9-4093-9cd0-985ec6ec0d6c" data-name="レイヤー 2">
+    <g id="f07bfdc5-acf9-43de-8610-7565ff2893e3" data-name="レイアウト">
+      <g>
+        <rect class="ef90d801-906b-4cc6-8c18-af5f364a6f98" width="24" height="24"/>
+        <polygon class="a0b5980d-1f00-4427-92a6-760a0d4e1142" points="7.38 19.86 3.04 14.94 4.54 13.62 7.47 16.94 19.51 4.9 20.92 6.31 7.38 19.86"/>
+      </g>
+    </g>
+  </g>
+</svg>
