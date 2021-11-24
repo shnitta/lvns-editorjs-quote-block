@@ -1,51 +1,7 @@
-class LvnsQuoteBlock {
-    static get toolbox() {
-        return {
-            title: '引用ブロック',
-            icon: '<img src="assets/icon.svg" width="17" height="15">'
-        };
-    } 
-
-    constructor({data}){
-        this.data = data;
-        this.wrapper = undefined;
-    }
-
-    render(){
-        this.wrapper = document.createElement('div');
-        this.wrapper.innerHTML = '';
-
-        const block = document.createElement('div');
-        block.classList.add('quote_block');
-        block.placeholder = 'Quoted Text...';
-        block.contentEditable = true;
-        block.innerHTML = this.data.value || '';
-
-        this.wrapper.appendChild(block);
-
-        return this.wrapper;
-	}
-      
-	save(blockContent){
-        const input = blockContent.querySelector('[contenteditable]');
-
-        return {
-            value: input.innerHTML || ''
-        }
-	}
-
-    validate(savedData){
-        if (!savedData.value.trim()){
-          return false;
-        }
-    
-        return true;
-      }
-}
 class LvnsButton {
     static get toolbox() {
         return {
-            title: 'ボタン',
+            title: 'ボタンリンク',
             icon: '<img src="assets/button.svg" width="17" height="15">'
         };
     } 
@@ -79,8 +35,11 @@ class LvnsButton {
 	}
 
     _renderForm(){
+        //ラベル
         const label = document.createElement('input');
-        label.placeholder = 'ラベル';
+        label.classList.add('ce-paragraph');
+        label.classList.add('cdx-block');
+        label.placeholder = 'ラベルテキスト';
         label.contentEditable = true;
         label.value = this.data.label || '';
         label.addEventListener('change', (event) => {
@@ -92,8 +51,11 @@ class LvnsButton {
       
         this.wrapper.appendChild(label);
 
+        //リンクURL
         const link = document.createElement('input');
-        link.placeholder = 'リンク先URL...';
+        link.classList.add('ce-paragraph');
+        link.classList.add('cdx-block');
+        link.placeholder = 'Target URL';
         link.contentEditable = true;
         link.value = this.data.link || '';
         link.addEventListener('change', (event) => {
