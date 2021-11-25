@@ -1,7 +1,7 @@
 class LvnsBanner {
     static get toolbox() {
         return {
-            title: 'バナー',
+            title: 'バナー画像',
             icon: '<img src="assets/banner.svg" width="17" height="15">'
         };
     } 
@@ -58,7 +58,7 @@ class LvnsBanner {
         input_alt.classList.add('cdx-block');
         input_alt.placeholder = 'alt';
         input_alt.contentEditable = true;
-        input_alt.value = this.data.link || '';
+        input_alt.value = this.data.alt || '';
         input_alt.addEventListener('change', (event) => {
             this.data.alt  = event.target.value;
             if (this.data && this.data.src && this.data.alt){
@@ -99,13 +99,15 @@ class LvnsBanner {
         this.wrapper.appendChild(padding_div);
 
         //確定ボタン
-        const btn_submit = document.createElement('button');
-        // btn_submit.classList.add('btn');
-        btn_submit.innerHTML = '<img src="assets/check.svg" width="18" height="18">';
+        // const submit_div = document.createElement('div');
+        const btn_submit = document.createElement('div');
+        btn_submit.classList.add('btn');
+        btn_submit.innerHTML = 'Save';
         btn_submit.addEventListener('click', (event) => {
             this._clickSettingButton('confirm');
         });
         this.wrapper.appendChild(btn_submit);
+        // submit_div.appendChild(btn_submit);
     }
 
     _renderItem(src, alt, padding){
@@ -131,18 +133,16 @@ class LvnsBanner {
       
 	save(blockContent){
         return Object.assign(this.data, {
-            label: this.data.label || '',
-            link: this.data.link || ''
+            src: this.data.src || '',
+            alt: this.data.alt || '',
+            padding: this.data.padding || false
         });
 	}
 
     validate(savedData){
-        if (!savedData.label.trim()){
+        if (!savedData.src.trim()){
           return false;
         }
-        if (!savedData.link.trim()){
-            return false;
-          }
     
         return true;
     }
