@@ -42,3 +42,4 @@ class LvnsQuoteBlock {
         return true;
       }
 }
+module.exports = LvnsQuoteBlock;
